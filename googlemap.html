@@ -1,0 +1,20 @@
+<div id="map"></div>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkB9e529QwtWT4yl8bKahJDWDFQE1LpiM&callback=initMap"
+  async
+  defer
+></script>
+<script>
+  function initMap() {
+    const map = new google.maps.Map(document.getElementById('map'), {
+      center: { lat: 22.733520149343644, lng: 120.28454871165313 },
+      zoom: 14,
+    });
+
+    const marker = new google.maps.Marker({
+      position: { lat: 22.733520149343644, lng: 120.28454871165313 },
+      map: map,
+      title: 'Hello World!',
+    });
+  }
+</script>
