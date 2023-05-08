@@ -58,4 +58,5 @@ const handleEvents = async (events = []) => (
   ))
 );
 
+
 export default handleEvents;
