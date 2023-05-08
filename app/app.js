@@ -61,7 +61,7 @@ const handleEvents = async (events = []) => (
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.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,
 });
 const openai = new OpenAIApi(configuration);
 
