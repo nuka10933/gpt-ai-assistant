@@ -58,21 +58,4 @@ const handleEvents = async (events = []) => (
   ))
 );
 
-const { Configuration, OpenAIApi } = require("openai");
-
-const configuration = new Configuration({
-  apiKey: process.env.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,
-});
-const openai = new OpenAIApi(configuration);
-
-const response = await openai.createCompletion({
-  model: "davinci:ft-personal:teachers-name-2023-05-08-09-14-18",
-  prompt: "高大資管最帥的老師是誰? 楊書成教授",
-  temperature: 0.7,
-  max_tokens: 256,
-  top_p: 1,
-  frequency_penalty: 0,
-  presence_penalty: 0,
-});
-
 export default handleEvents;
