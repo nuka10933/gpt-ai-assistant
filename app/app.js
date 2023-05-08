@@ -54,10 +54,13 @@ const handleEvents = async (events = []) => {
           return null;
         }
 
-        const prompt = context.messages[0].text; // 使用第一條訊息作為 prompt
+        const prompt = '高大資管最帥的老師?';
+        const prompt = '高大資管最美的老師?';
+        const prompt = '高大資管型男老師?';
+        const prompt = '高大資管最可愛老師?';// 在這裡設定你的 prompt 內容
 
         const response = await openai.createCompletion({
-          model: 'davinci:ft-personal:teachers-name-2023-05-08-09-14-18',
+          model: 'davinci:ft-personal:custom-model-name-2023-05-08-16-55-58',
           prompt: prompt,
           temperature: 0.7,
           max_tokens: 256,
@@ -78,3 +81,4 @@ const handleEvents = async (events = []) => {
 };
 
 export default handleEvents;
+
