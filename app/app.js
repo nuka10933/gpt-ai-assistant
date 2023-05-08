@@ -17,11 +17,8 @@ import {
 } from './handlers/index.js';
 import Context from './context.js';
 import Event from './models/event.js';
+import { Configuration, OpenAIApi } from 'openai';
 
-/**
- * @param {Context} context
- * @returns {Promise<Context>}
- */
 const handleContext = async (context) => (
   activateHandler(context)
   || commandHandler(context)
@@ -40,23 +37,44 @@ const handleContext = async (context) => (
   || context
 );
 
-const handleEvents = async (events = []) => (
-  (Promise.all(
-    (await Promise.all(
-      (await Promise.all(
-        events
-          .map((event) => new Event(event))
-          .filter((event) => event.isMessage)
-          .filter((event) => event.isText || event.isAudio)
-          .map((event) => new Context(event))
-          .map((context) => context.initialize()),
-      ))
-        .map((context) => (context.error ? context : handleContext(context))),
-    ))
-      .filter((context) => context.messages.length > 0)
-      .map((context) => replyMessage(context)),
-  ))
-);
+const handleEvents = async (events = []) => {
+  const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  const openai = new OpenAIApi(configuration);
 
+  return Promise.all(
+    events.map(async (event) => {
+      const eventObj = new Event(event);
+      if (eventObj.isMessage && (eventObj.isText || eventObj.isAudio)) {
+        const context = new Context(eventObj);
+        await context.initialize();
+
+        if (context.error || context.messages.length === 0) {
+          return null;
+        }
+
+        const prompt = context.messages[0].text; // 使用第一條訊息作為 prompt
+
+        const response = await openai.createCompletion({
+          model: 'davinci:ft-personal:teachers-name-2023-05-08-09-14-18',
+          prompt: prompt,
+          temperature: 0.7,
+          max_tokens: 256,
+          top_p: 1,
+          frequency_penalty: 0,
+          presence_penalty: 0,
+        });
+
+        const generatedText = response.choices[0].text.trim();
+        context.messages[0].text = generatedText; // 替換第一條訊息的內容為生成的文本
+
+        return replyMessage(context);
+      }
+
+      return null;
+    })
+  );
+};
 
 export default handleEvents;
