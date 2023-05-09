@@ -14,9 +14,11 @@ export const IMAGE_SIZE_256 = '256x256';
 export const IMAGE_SIZE_512 = '512x512';
 export const IMAGE_SIZE_1024 = '1024x1024';
 
+export const MODEL_davinci:ft-personal:custom-model-name-2023-05-08-16-55-58 = 'davinci:ft-personal:custom-model-name-2023-05-08-16-55-58';
 export const MODEL_GPT_3_5_TURBO = 'gpt-3.5-turbo';
 export const MODEL_GPT_4 = 'gpt-4';
 export const MODEL_WHISPER_1 = 'whisper-1';
+
 
 const client = axios.create({
   baseURL: config.OPENAI_BASE_URL,
