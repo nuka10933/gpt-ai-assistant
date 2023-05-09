@@ -78,39 +78,39 @@ const createTextCompletion = ({
 });
 
 const createChatCompletion1 = ({
-  model = config.OPENAI_TEACHER_MODEL,
-  messages,
-  temperature = config.OPENAI_TEACHER_TEMPERATURE,
-  maxTokens = config.OPENAI_TEACHER_MAX_TOKENS,
-  frequencyPenalty = config.OPENAI_TEACHER_FREQUENCY_PENALTY,
-  presencePenalty = config.OPENAI_TEACHER_PRESENCE_PENALTY,
+  model1 = config.OPENAI_TEACHER_MODEL,
+  messages1,
+  temperature1 = config.OPENAI_TEACHER_TEMPERATURE,
+  maxTokens1 = config.OPENAI_TEACHER_MAX_TOKENS,
+  frequencyPenalty1 = config.OPENAI_TEACHER_FREQUENCY_PENALTY,
+  presencePenalty1 = config.OPENAI_TEACHER_PRESENCE_PENALTY,
 }) => client.post('/v1/fine-tunes', {
-  model,
-  messages,
-  temperature,
-  max_tokens: maxTokens,
-  frequency_penalty: frequencyPenalty,
-  presence_penalty: presencePenalty,
+  model1,
+  messages1,
+  temperature1,
+  max_tokens1: maxTokens1,
+  frequency_penalty1: frequencyPenalty1,
+  presence_penalty1: presencePenalty1,
 });
 
 const createTextCompletion1 = ({
-  model = config.OPENAI_TEACHER_MODEL,
-  prompt,
-  temperature = config.OPENAI_TEACHER_TEMPERATURE,
-  maxTokens = config.OPENAI_TEACHER_MAX_TOKENS,
-  frequencyPenalty = config.OPENAI_TEACHER_FREQUENCY_PENALTY,
-  presencePenalty = config.OPENAI_TEACHER_PRESENCE_PENALTY,
+  model1 = config.OPENAI_TEACHER_MODEL,
+  prompt1,
+  temperature1 = config.OPENAI_TEACHER_TEMPERATURE,
+  maxTokens1 = config.OPENAI_TEACHER_MAX_TOKENS,
+  frequencyPenalty1 = config.OPENAI_TEACHER_FREQUENCY_PENALTY,
+  presencePenalty1 = config.OPENAI_TEACHER_PRESENCE_PENALTY,
   stop = [
     ` ${ROLE_AI}:`,
     ` ${ROLE_HUMAN}:`,
   ],
 }) => client.post('/v1/fine-tunes', {
-  model,
-  prompt,
-  temperature,
-  max_tokens: maxTokens,
-  frequency_penalty: frequencyPenalty,
-  presence_penalty: presencePenalty,
+  model1,
+  prompt1,
+  temperature1,
+  max_tokens1: maxTokens1,
+  frequency_penalty1: frequencyPenalty1,
+  presence_penalty1: presencePenalty1,
   stop,
 });
 
