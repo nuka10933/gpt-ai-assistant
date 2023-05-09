@@ -14,7 +14,7 @@ export const IMAGE_SIZE_256 = '256x256';
 export const IMAGE_SIZE_512 = '512x512';
 export const IMAGE_SIZE_1024 = '1024x1024';
 
-export const MODEL_DAVINCI_FT_PERSONAL_CUSTOM_MODEL_NAME_2023_05_08_16_55_58 = 'davinci:ft-personal:custom-model-name-2023-05-08-16-55-58';
+export const MODEL_DAVINCI_FT_PERSONAL_TEACHER_2023_05_09_11_33_45 = 'davinci:ft-personal:teacher-2023-05-09-11-33-45';
 export const MODEL_GPT_3_5_TURBO = 'gpt-3.5-turbo';
 export const MODEL_GPT_4 = 'gpt-4';
 export const MODEL_WHISPER_1 = 'whisper-1';
@@ -68,6 +68,43 @@ const createTextCompletion = ({
     ` ${ROLE_HUMAN}:`,
   ],
 }) => client.post('/v1/completions', {
+  model,
+  prompt,
+  temperature,
+  max_tokens: maxTokens,
+  frequency_penalty: frequencyPenalty,
+  presence_penalty: presencePenalty,
+  stop,
+});
+
+const createChatCompletion1 = ({
+  model = config.OPENAI_TEACHER_MODEL,
+  messages,
+  temperature = config.OPENAI_TEACHER_TEMPERATURE,
+  maxTokens = config.OPENAI_TEACHER_MAX_TOKENS,
+  frequencyPenalty = config.OPENAI_TEACHER_FREQUENCY_PENALTY,
+  presencePenalty = config.OPENAI_TEACHER_PRESENCE_PENALTY,
+}) => client.post('/v1/fine-tunes', {
+  model,
+  messages,
+  temperature,
+  max_tokens: maxTokens,
+  frequency_penalty: frequencyPenalty,
+  presence_penalty: presencePenalty,
+});
+
+const createTextCompletion1 = ({
+  model = config.OPENAI_TEACHER_MODEL,
+  prompt,
+  temperature = config.OPENAI_TEACHER_TEMPERATURE,
+  maxTokens = config.OPENAI_TEACHER_MAX_TOKENS,
+  frequencyPenalty = config.OPENAI_TEACHER_FREQUENCY_PENALTY,
+  presencePenalty = config.OPENAI_TEACHER_PRESENCE_PENALTY,
+  stop = [
+    ` ${ROLE_AI}:`,
+    ` ${ROLE_HUMAN}:`,
+  ],
+}) => client.post('/v1/fine-tunes', {
   model,
   prompt,
   temperature,
