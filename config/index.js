@@ -48,7 +48,8 @@ const config = Object.freeze({
   SERPAPI_API_KEY: env.SERPAPI_API_KEY || null,
   SERPAPI_LOCATION: env.SERPAPI_LOCATION || 'Taiwan',
   SERPAPI_LANG: env.SERPAPI_LANG || 'lang_zh-TW',
-  GOOGLE_MAPS_API_KEY: env.GOOGLE_MAPS_API_KEY || null,　
+  GOOGLE_MAPS_API_KEY: env.GOOGLE_MAPS_API_KEY || null,
+  OPENAI_TEACHER_MODEL: env.OPENAI_TEACHER_MODEL || 'davinci:ft-personal:teacher-2023-05-09-11-33-45',
 });
 
 export default config;
