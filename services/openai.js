@@ -17,6 +17,7 @@ export const IMAGE_SIZE_1024 = '1024x1024';
 export const MODEL_GPT_3_5_TURBO = 'gpt-3.5-turbo';
 export const MODEL_GPT_4 = 'gpt-4';
 export const MODEL_WHISPER_1 = 'whisper-1';
+export const MODEL_davinci:ft-personal:custom-model-name-2023-05-08-16-55-58　＝　'davinci:ft-personal:custom-model-name-2023-05-08-16-55-58'；
 
 const client = axios.create({
   baseURL: config.OPENAI_BASE_URL,
@@ -97,6 +98,23 @@ const createAudioTranscriptions = ({
     headers: formData.getHeaders(),
   });
 };
+
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
+const response = await openai.createCompletion({
+  model: "davinci:ft-personal:custom-model-name-2023-05-08-16-55-58",
+  prompt: "",
+  temperature: 0.7,
+  max_tokens: 256,
+  top_p: 1,
+  frequency_penalty: 0,
+  presence_penalty: 0,
+});
 
 export {
   createChatCompletion,
