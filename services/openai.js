@@ -139,7 +139,9 @@ const createAudioTranscriptions = ({
 
 export {
   createChatCompletion,
+  createChatCompletion1,
   createTextCompletion,
+  createTextCompletion1,
   createImage,
   createAudioTranscriptions,
 };
