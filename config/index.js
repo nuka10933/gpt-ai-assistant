@@ -48,7 +48,7 @@ const config = Object.freeze({
   SERPAPI_API_KEY: env.SERPAPI_API_KEY || null,
   SERPAPI_LOCATION: env.SERPAPI_LOCATION || 'Taiwan',
   SERPAPI_LANG: env.SERPAPI_LANG || 'lang_zh-TW',
-  GOOGLE_MAPS_API_KEY: env.GOOGLE_MAPS_API_KEY || null,
+  GOOGLE_MAPS_API_KEY: env.GOOGLE_MAPS_API_KEY || null,　
 });
 
 export default config;
