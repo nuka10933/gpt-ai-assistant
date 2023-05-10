@@ -64,8 +64,8 @@ const createTextCompletion = ({
   frequencyPenalty = config.OPENAI_COMPLETION_FREQUENCY_PENALTY,
   presencePenalty = config.OPENAI_COMPLETION_PRESENCE_PENALTY,
   stop = [
-    ` ${ROLE_AI}:`,
-    ` ${ROLE_HUMAN}:`,
+    ` ${END}:`,
+    ` ${END}:`,
   ],
 }) => client.post('/v1/completions', {
   model,
@@ -74,43 +74,6 @@ const createTextCompletion = ({
   max_tokens: maxTokens,
   frequency_penalty: frequencyPenalty,
   presence_penalty: presencePenalty,
-  stop,
-});
-
-const createChatCompletion1 = ({
-  model1 = config.OPENAI_TEACHER_MODEL,
-  messages1,
-  temperature1 = config.OPENAI_TEACHER_TEMPERATURE,
-  maxTokens1 = config.OPENAI_TEACHER_MAX_TOKENS,
-  frequencyPenalty1 = config.OPENAI_TEACHER_FREQUENCY_PENALTY,
-  presencePenalty1 = config.OPENAI_TEACHER_PRESENCE_PENALTY,
-}) => client.post('/v1/fine-tunes', {
-  model1,
-  messages1,
-  temperature1,
-  max_tokens1: maxTokens1,
-  frequency_penalty1: frequencyPenalty1,
-  presence_penalty1: presencePenalty1,
-});
-
-const createTextCompletion1 = ({
-  model1 = config.OPENAI_TEACHER_MODEL,
-  prompt1,
-  temperature1 = config.OPENAI_TEACHER_TEMPERATURE,
-  maxTokens1 = config.OPENAI_TEACHER_MAX_TOKENS,
-  frequencyPenalty1 = config.OPENAI_TEACHER_FREQUENCY_PENALTY,
-  presencePenalty1 = config.OPENAI_TEACHER_PRESENCE_PENALTY,
-  stop = [
-    ` ${ROLE_AI}:`,
-    ` ${ROLE_HUMAN}:`,
-  ],
-}) => client.post('/v1/fine-tunes', {
-  model1,
-  prompt1,
-  temperature1,
-  max_tokens1: maxTokens1,
-  frequency_penalty1: frequencyPenalty1,
-  presence_penalty1: presencePenalty1,
   stop,
 });
 
@@ -139,9 +102,7 @@ const createAudioTranscriptions = ({
 
 export {
   createChatCompletion,
-  createChatCompletion1,
   createTextCompletion,
-  createTextCompletion1,
   createImage,
   createAudioTranscriptions,
 };
