@@ -15,7 +15,7 @@ export const IMAGE_SIZE_256 = '256x256';
 export const IMAGE_SIZE_512 = '512x512';
 export const IMAGE_SIZE_1024 = '1024x1024';
 
-export const MODEL_DAVINCI_FT_PERSONAL_TEACHER123_NAME_2023_05_12_14_39_26 = 'davinci:ft-personal:teacher123-name-2023-05-12-14-39-26';
+export const MODEL_DAVINCI_FT_PERSONAL_CUSTOM_MODEL_NAME_2023_05_22_09_01_30 = 'davinci:ft-personal:custom-model-name-2023-05-22-09-01-30';
 export const MODEL_GPT_3_5_TURBO = 'gpt-3.5-turbo';
 export const MODEL_GPT_4 = 'gpt-4';
 export const MODEL_WHISPER_1 = 'whisper-1';
