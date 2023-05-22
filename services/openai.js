@@ -4,6 +4,8 @@ import config from '../config/index.js';
 import { handleFulfilled, handleRejected, handleRequest } from './utils/index.js';
 
 export const ROLE_SYSTEM = 'system';
+export const ROLE_AI = 'assistant';
+export const ROLE_HUMAN = 'user';
 
 
 export const FINISH_REASON_STOP = 'stop';
@@ -62,7 +64,10 @@ const createTextCompletion = ({
   maxTokens = config.OPENAI_COMPLETION_MAX_TOKENS,
   frequencyPenalty = config.OPENAI_COMPLETION_FREQUENCY_PENALTY,
   presencePenalty = config.OPENAI_COMPLETION_PRESENCE_PENALTY,
-  stop,
+  stop = [
+    ` ${ROLE_AI}:`,
+    ` ${ROLE_HUMAN}:`,
+  ],
 }) => client.post('/v1/completions', {
   model,
   prompt,
