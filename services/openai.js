@@ -62,10 +62,7 @@ const createTextCompletion = ({
   maxTokens = config.OPENAI_COMPLETION_MAX_TOKENS,
   frequencyPenalty = config.OPENAI_COMPLETION_FREQUENCY_PENALTY,
   presencePenalty = config.OPENAI_COMPLETION_PRESENCE_PENALTY,
-  stop = [
-    ` ${ROLE_AI}:`,
-    ` ${ROLE_HUMAN}:`,
-  ],
+  stop,
 }) => client.post('/v1/completions', {
   model,
   prompt,
