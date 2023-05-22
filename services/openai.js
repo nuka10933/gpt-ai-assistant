@@ -20,7 +20,6 @@ export const MODEL_GPT_3_5_TURBO = 'gpt-3.5-turbo';
 export const MODEL_GPT_4 = 'gpt-4';
 export const MODEL_WHISPER_1 = 'whisper-1';
 
-
 const client = axios.create({
   baseURL: config.OPENAI_BASE_URL,
   timeout: config.OPENAI_TIMEOUT,
