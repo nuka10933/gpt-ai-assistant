@@ -4,8 +4,7 @@ import config from '../config/index.js';
 import { handleFulfilled, handleRejected, handleRequest } from './utils/index.js';
 
 export const ROLE_SYSTEM = 'system';
-export const ROLE_AI = 'assistant';
-export const ROLE_HUMAN = 'user';
+
 
 export const FINISH_REASON_STOP = 'stop';
 export const FINISH_REASON_LENGTH = 'length';
