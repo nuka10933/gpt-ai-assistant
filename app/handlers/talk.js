@@ -23,35 +23,18 @@ const check = (context) => (
  */
 const exec = (context) => check(context) && (
   async () => {
-    if (context.role === ROLE_HUMAN) {
-      const prompt = getPrompt(context.userId);
-      const previousBotMessage = getPreviousBotMessage(context); // 取得前一個機器人回應的內容
-
-      if (previousBotMessage) {
-        // 根據前一個機器人回應的內容進行問答
-        const question = previousBotMessage.text;
-        const answer = context.trimmedText;
-
-        // 更新對話歷史和 prompt
-        updateHistory(context.id, (history) => history.write(config.BOT_NAME, question).write(config.USER_NAME, answer));
-        prompt.write(ROLE_HUMAN, answer).write(ROLE_AI, question);
-      } else {
-        // 沒有前一個機器人回應，則僅提示用戶輸入問題
-        prompt.write(ROLE_HUMAN, context.trimmedText);
-      }
-
-      try {
-        const { text, isFinishReasonStop } = await generateCompletion({ prompt });
-        prompt.patch(text);
-        setPrompt(context.userId, prompt);
-        updateHistory(context.id, (history) => history.write(config.BOT_NAME, text));
-        const actions = isFinishReasonStop ? [] : [COMMAND_BOT_CONTINUE];
-        context.pushText(text, actions);
-      } catch (err) {
-        context.pushError(err);
-      }
+    const prompt = getPrompt(context.userId);
+    prompt.write(ROLE_HUMAN, `${t('__COMPLETION_DEFAULT_AI_TONE')(config.BOT_TONE)}${context.trimmedText}`).write(ROLE_AI);
+    try {
+      const { text, isFinishReasonStop } = await generateCompletion({ prompt });
+      prompt.patch(text);
+      setPrompt(context.userId, prompt);
+      break;
+      const actions = isFinishReasonStop ? [] : [COMMAND_BOT_CONTINUE];
+      context.pushText(text, actions);
+    } catch (err) {
+      context.pushError(err);
     }
-
     return context;
   }
 )();
